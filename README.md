@@ -1,1 +1,0 @@
-# mudil-mek-yor-mak-3D-EM
