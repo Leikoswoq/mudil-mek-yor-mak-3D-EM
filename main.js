@@ -43,12 +43,12 @@
         // Camera
         const camera = new BABYLON.ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2.8, 6, new BABYLON.Vector3(0, 1, 0), scene);
         camera.attachControl(canvas, true);
-        camera.lowerBetaLimit = 0.1; // prevent rotating down too far
-        camera.upperBetaLimit = Math.PI / 2; // prevent rotating below horizon
+        camera.lowerBetaLimit = 0; // Allow full downward rotation
+        camera.upperBetaLimit = Math.PI / 2.2; // Limit upward rotation
 
         // Ambient light (brighter)
         const ambient = new BABYLON.HemisphericLight("ambient", new BABYLON.Vector3(0, 1, 0), scene);
-        ambient.intensity = 1.0;
+        ambient.intensity = 1.2;
 
         // Bright spotlight
         const spotlight = new BABYLON.SpotLight(
@@ -59,7 +59,7 @@
           2,
           scene
         );
-        spotlight.intensity = 4;
+        spotlight.intensity = 4.5;
         spotlight.shadowEnabled = true;
 
         // Environment
