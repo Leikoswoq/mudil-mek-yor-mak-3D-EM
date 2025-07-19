@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Babylon GLB Loader</title>
-  <!-- Babylon core -->
+  <title>3D Model Viewer</title>
+  
+  <!-- BabylonJS core -->
   <script src="https://cdn.babylonjs.com/babylon.js"></script>
-  <!-- ✅ Include this to load .glb/.gltf files -->
-  <script src="https://cdn.babylonjs.com/loaders/babylon.glb.js"></script>
+  
+  <!-- ✅ GLTF/GLB loader (REQUIRED) -->
+  <script src="https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.js"></script>
+
   <style>
     html, body {
       margin: 0;
       overflow: hidden;
       height: 100%;
-      background: #000;
+      background: black;
     }
     canvas {
       width: 100%;
@@ -23,6 +26,8 @@
 </head>
 <body>
   <canvas id="renderCanvas"></canvas>
+
+  <!-- Your custom JS -->
   <script src="main.js"></script>
 </body>
 </html>
