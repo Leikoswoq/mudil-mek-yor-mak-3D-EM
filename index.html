@@ -1,7 +1,64 @@
 <!DOCTYPE html>
-<html>
-<head><title>3d model view Host</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Babylon Viewer - Exhibition Booth</title>
+
+  <!-- Babylon CDN -->
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
+  <script src="https://cdn.babylonjs.com/loaders/babylon.glb.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #222;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
 <body>
-  <h1>3d model host is working!</h1>
+  <canvas id="renderCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById("renderCanvas");
+    const engine = new BABYLON.Engine(canvas, true);
+    const scene = new BABYLON.Scene(engine);
+
+    // Add camera
+    const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 3, 15, BABYLON.Vector3.Zero(), scene);
+    camera.attachControl(canvas, true);
+
+    // Add light
+    const light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(0, 1, 0), scene);
+    light.intensity = 1.0;
+
+    // Show debug loading status
+    console.log("Loading model...");
+
+    // Load the GLB model
+    BABYLON.SceneLoader.Append(
+      "https://leikoswoq.github.io/mudil-mek-yor-mak-3D-EM/",
+      "Exhibition-Booth-this.glb",
+      scene,
+      function (scene) {
+        console.log("✅ Model loaded!");
+        engine.runRenderLoop(() => scene.render());
+      },
+      null,
+      function (scene, message, exception) {
+        console.error("❌ Failed to load model:", message, exception);
+        alert("Failed to load the 3D model. Check console for details.");
+      }
+    );
+
+    // Resize handler
+    window.addEventListener("resize", () => engine.resize());
+  </script>
 </body>
 </html>
